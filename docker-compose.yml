@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+  web:
+    image: nginx:1.15
+    volumes:
+      - ./Magento:/var/www/html
+      - ./Docker/nginx:/etc/nginx/conf.d
+      - ./Docker/logs/nginx:/var/log/nginx
+    ports:
+      - '80:80'
+    links:
+      - php
+  php: 
+    build: ./Docker/php
+    expose:
+      - '9000'
+    volumes:
+      - ./Magento:/var/www/html
+      - ./Docker/php/php_memory.ini:/usr/local/etc/php/conf.d/php_memory.ini
+  db:
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./Docker/dbdata:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'secret'
+      MYSQL_DATABASE: 'magento2'
+      MYSQL_USER: 'magento2'
+      MYSQL_PASSWORD: 'magento2'
+
