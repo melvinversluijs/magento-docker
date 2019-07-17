@@ -2,6 +2,7 @@
 # Docker log and db files
 Docker/dbdata
 Docker/logs
+docker/db/data
 
 # Also ignore the Magento folder since we don't want this in Git.
 Magento
