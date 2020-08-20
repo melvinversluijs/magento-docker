@@ -8,6 +8,9 @@ docker/db/data
 Magento
 magento
 
+# Ignore the SSL certificates.
+docker/nginx/certs/*.pem
+
 #########################
 # Second some default ignores for MacOS, Windows, VSCode and PHPStorm.
 
