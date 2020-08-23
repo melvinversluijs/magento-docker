@@ -5,7 +5,7 @@ A docker setup for Magento2.3 development.
 ## Requirements
 
 - Docker: <https://docs.docker.com/engine/installation/#supported-platforms>
-- Magento2.3: You should be able to provide your own clean Magento2.3 installation. (Since this build uses PHP version 7.2 only Magento2.3 will work).
+- Magento2.3: You should be able to provide your own clean Magento2.3 installation. (Since this build uses PHP version 7.3 only Magento2.3 will work).
 
 Make sure you got both Docker: `docker -v` and docker-compose: `docker-compose -v`
 

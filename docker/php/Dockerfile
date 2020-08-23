@@ -1,9 +1,10 @@
-FROM php:7.2-fpm-stretch
+FROM php:7.3-fpm-stretch
 LABEL author "Melvin Versluijs <https://github.com/melvinversluijs>"
 RUN apt-get -y update
 RUN apt-get -y install \
         libcurl4-gnutls-dev \
         zlib1g-dev \
+        libzip-dev \
         libpng-dev \
         libjpeg-dev \
         libfreetype6-dev \
