@@ -1,4 +1,4 @@
-FROM nginx:1.17
+FROM nginx:1.19
 LABEL author "Melvin Versluijs <https://github.com/melvinversluijs>"
 RUN apt-get -y update
 

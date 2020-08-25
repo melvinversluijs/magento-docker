@@ -1,4 +1,4 @@
-FROM php:7.3-fpm-stretch
+FROM php:7.4-fpm
 LABEL author "Melvin Versluijs <https://github.com/melvinversluijs>"
 RUN apt-get -y update
 RUN apt-get -y install \
@@ -16,13 +16,10 @@ RUN curl -O https://download.libsodium.org/libsodium/releases/libsodium-1.0.18.t
         && cd libsodium-1.0.18 \
         && ./configure \
         && make && make install \
-        && pecl install -f libsodium    
+        && pecl install -f libsodium
 
 ## Configure GD
-RUN docker-php-ext-configure \
-        gd \
-        --with-jpeg-dir=/usr/lib \
-        --with-freetype-dir=/usr/include/freetype2
+RUN docker-php-ext-configure gd --with-jpeg --with-freetype
 
 ## Install required php modules.
 RUN docker-php-ext-install \
@@ -34,7 +31,8 @@ RUN docker-php-ext-install \
         bcmath \
         opcache \
         intl \
-        soap
+        soap \
+        sockets
 
 ## Install composer globally.
 RUN curl --silent --show-error https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
