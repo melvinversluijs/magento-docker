@@ -32,7 +32,7 @@ c2295a625dd7        mariadb:10.4          "docker-entrypoint.s…"   30 minutes 
 8. To access the Magento 2 shop in your browser use **https://localhost** as url. Note on MacOS the .local extension should be bypassed in the proxy settings. (Settings -> Network -> Advanced -> Proxies -> add `*.local` in the text area).
 9. During the Magento installation step, use the following credentials for your Database:
    1. Database Server Host: db:3306
-   2. Database Server Username: magentot
+   2. Database Server Username: magento
    3. Database Server Password: magento
    4. Database name: magento
 
