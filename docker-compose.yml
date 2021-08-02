@@ -7,24 +7,21 @@ services:
       dockerfile: ./docker/nginx/Dockerfile
     container_name: magento-web
     volumes:
-      - ./magento:/var/www/html:cached,z
-      - ./magento/app:/var/www/html/app:delegated,z
+      - ./magento:/app:delegated
+      - vendor-files:/app/vendor
     ports:
       - '80:80'
       - '443:443'
     depends_on:
-      - db
       - php
   php:
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
     container_name: magento-php
-    expose:
-      - '9000'
     volumes:
-      - ./magento:/var/www/html:cached,z
-      - ./magento/app:/var/www/html/app:delegated,z
+      - ./magento:/app:delegated
+      - vendor-files:/app/vendor
     depends_on:
       - db
   db:
@@ -48,4 +45,5 @@ services:
       - discovery.type=single-node
 
 volumes:
+  vendor-files:
   database:

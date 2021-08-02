@@ -1,5 +1,6 @@
 FROM php:7.4-fpm
-LABEL author "Melvin Versluijs <https://github.com/melvinversluijs>"
+MAINTAINER "Melvin Versluijs <https://github.com/melvinversluijs>"
+
 RUN apt-get -y update
 RUN apt-get -y install \
         libcurl4-gnutls-dev \
@@ -9,6 +10,9 @@ RUN apt-get -y install \
         libjpeg-dev \
         libfreetype6-dev \
         libxslt-dev
+
+## Install composer globally.
+COPY --from=composer:2.0 /usr/bin/composer /usr/local/bin/composer
 
 ## Install libsodium, required as of Magento2.3.2
 RUN curl -O https://download.libsodium.org/libsodium/releases/libsodium-1.0.18.tar.gz \
@@ -34,11 +38,10 @@ RUN docker-php-ext-install \
         soap \
         sockets
 
-## Install composer globally.
-RUN curl --silent --show-error https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
-
-## Copy intial folder.
-COPY ./magento /var/www/html
-
 ## Copy custom php ini file.
 COPY ./docker/php/php_custom.ini /usr/local/etc/php/conf.d/php_custom.ini
+
+## Set working directory.
+WORKDIR /app
+
+CMD ["php-fpm"]

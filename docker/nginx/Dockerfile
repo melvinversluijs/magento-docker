@@ -1,9 +1,6 @@
-FROM nginx:1.19
-LABEL author "Melvin Versluijs <https://github.com/melvinversluijs>"
-RUN apt-get -y update
-
-## Copy initial magento files.
-COPY ./magento/ /var/www/html
+FROM nginx:1.21-alpine
+MAINTAINER "Melvin Versluijs <https://github.com/melvinversluijs>"
+RUN apk update
 
 ## Copy SSL certificates.
 COPY ./docker/nginx/certs/*  /etc/ssl/

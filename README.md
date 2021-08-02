@@ -12,7 +12,7 @@ Make sure you got both Docker: `docker -v` and docker-compose: `docker-compose -
 ## Usage
 
 1. Navigate to the root of this project.
-2. Add your Magento installation and name the folder containing your Magento files as `magento`. (If you want to call it anything else please also change this on line 7 and 19 of the docker-compose.yml file).
+2. Add your Magento installation and name the folder containing your Magento files as `magento`. (If you want to call it anything else please also change this on line 10 and 23 of the docker-compose.yml file).
 3. Build the project with `docker-compose build`
    - Make sure you Use Linux containers (Windows only)
    - Execute commands in CMD as administrator (Windows only)
@@ -65,4 +65,14 @@ php bin/magento setup:install \
     --admin-firstname="Firstname" \
     --admin-lastname="Lastname" \
     --backend-frontname="admin"
+```
+
+## Vendor files
+
+To speed up the environment, the vendor files in the bind mount, instead they are persisted in a named volume.
+This means that the vendor files will not be synced to your local working directory. To download the vendor
+files to your host machine (This is useful for autocompletion in IDE's) use the following command:
+
+```bash
+docker cp magento-php:/app/vendor ./magento/
 ```
